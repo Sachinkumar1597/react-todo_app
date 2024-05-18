@@ -1,25 +1,70 @@
-import logo from './logo.svg';
+// // src/App.js
+// import React, { useState } from 'react';
+// import TodoList from './TodoList';
+// import './App.css';
+// import TodoForm from './TodoForm';
+
+// const App = () => {
+//   const [todos, setTodos] = useState([]);
+
+//   const handleAdd = (text) => {
+//     const newTodo = {
+//       id: Date.now(),
+//       text
+//     };
+//     setTodos([...todos, newTodo]);
+//   };
+
+//   const handleDelete = (id) => {
+//     setTodos(todos.filter(todo => todo.id !== id));
+//   };
+
+//   const handleEdit = (id, newText) => {
+//     setTodos(todos.map(todo => (todo.id === id ? { ...todo, text: newText } : todo)));
+//   };
+
+//   return (
+//     <div className="App">
+//       <h1>Todo App</h1>
+//       <TodoForm onAdd={handleAdd} />
+//       <TodoList todos={todos} onDelete={handleDelete} onEdit={handleEdit} />
+//     </div>
+//   );
+// };
+
+// export default App;
+// src/App.js
+import React, { useState } from 'react';
+import TodoList from './TodoList';
+import TodoForm from './TodoForm';
 import './App.css';
 
-function App() {
+const App = () => {
+  const [todos, setTodos] = useState([]);
+
+  const handleAdd = (text) => {
+    const newTodo = {
+      id: Date.now(),
+      text
+    };
+    setTodos([...todos, newTodo]);
+  };
+
+  const handleDelete = (id) => {
+    setTodos(todos.filter(todo => todo.id !== id));
+  };
+
+  const handleEdit = (id, newText) => {
+    setTodos(todos.map(todo => (todo.id === id ? { ...todo, text: newText } : todo)));
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Todo App</h1>
+      <TodoForm onAdd={handleAdd} />
+      <TodoList todos={todos} onDelete={handleDelete} onEdit={handleEdit} />
     </div>
   );
-}
+};
 
 export default App;
